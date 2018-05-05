@@ -7,9 +7,6 @@
 # aws_s3_bucket - terraform docs
 # https://www.terraform.io/docs/providers/aws/r/s3_bucket.html
 
-
-
-
 # Required
 # --------
 
@@ -17,7 +14,6 @@ variable "aws_region" {
   description = "AWS region"
   default     = "eu-west-1"
 }
-
 
 # Optional
 # --------
@@ -27,7 +23,6 @@ variable "bucket" {
   default     = "my-s3-bucket"
 }
 
-
 variable "region" {
   description = "If specified, the AWS region this bucket should reside in. Otherwise, the region used by the callee"
   default     = "eu-west-1"
@@ -35,7 +30,7 @@ variable "region" {
 
 variable "bucket_suffix" {
   description = "enable bucket name suffix eg my-bucket-suffix"
-  default     = "suffix"
+  default     = ""
 }
 
 variable "enable_random_id_suffix" {
@@ -61,46 +56,44 @@ variable "force_destroy" {
 
 variable "common_tags" {
   description = "Deloitte Cloud common tags for bucket"
-  type = "map"
+  type        = "map"
+
   default = {
-    terraform   = "true"
+    terraform = "true"
   }
 }
 
 variable "other_tags" {
   description = "other tags for bucket"
-  type = "map"
-  default = {}
+  type        = "map"
+  default     = {}
 }
 
 variable "prevent_destroy" {
   description = "lifecycle rule to prevent the removal of a bucket during a destroy"
-  default = false
+  default     = false
 }
-
 
 # Default server side encryption configuration
 
 variable "sse_algorithm" {
   description = "The server-side encryption algorithm to use. Valid values are AES256 and aws:kms"
-  default = "AES256"
+  default     = "AES256"
 }
 
 variable "kms_master_key_id" {
   description = "The AWS KMS master key ID used for the SSE-KMS encryption. This can only be used when you set the value of sse_algorithm as aws:kms. The default aws/s3 AWS KMS master key is used if this element is absent while the sse_algorithm is aws:kms"
-  default = ""
+  default     = ""
 }
 
 # lifecycle rule - abort multi-part uploads
 
 variable "enable_abort_incomplete_multipart_upload" {
   description = "Lifecycle rule to abort incomplete multi-part uploads after a certain time"
-  default = false
+  default     = false
 }
 
 variable "abort_incomplete_multipart_upload_days" {
   description = "No. of days to wait before aborting incomplete multi-part uploads"
-  default = "7"
+  default     = "7"
 }
-
-
