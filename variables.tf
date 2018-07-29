@@ -97,3 +97,8 @@ variable "abort_incomplete_multipart_upload_days" {
   description = "No. of days to wait before aborting incomplete multi-part uploads"
   default     = "7"
 }
+
+variable "policy" {
+  description = "Policy to add to bucket"
+  default     = ""
+}
